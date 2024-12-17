@@ -29,4 +29,3 @@ Thumbs.db
 # Ignore logs
 *.log
 
-venv/
