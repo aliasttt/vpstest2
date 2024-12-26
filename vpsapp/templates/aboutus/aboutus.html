@@ -1,0 +1,148 @@
+{% extends "partitions/base.html" %}
+{% load static %}
+
+{% block head %}
+<style>
+    /* کلیات صفحه */
+    body {
+        font-family: 'Arial', sans-serif;
+        direction: ltr;
+        text-align: left;
+        background-color: #f0f4f7;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* تنظیم انیمیشن */
+    @keyframes slide-up {
+        0% {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* استایل برای هر بخش */
+    .about-section {
+        background-color: #ffffff;
+        padding: 40px 20px;
+        border-radius: 8px;
+        margin: 0 auto;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        overflow: hidden;
+        animation: slide-up 0.8s ease-out; /* انیمیشن حرکت از پایین به بالا */
+    }
+
+    .section-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+        background-color: #f4f7fa;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-section {
+        font-size: 18px;
+        line-height: 1.5;
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    /* تنظیم برای موبایل */
+    @media (max-width: 768px) {
+        .text-section {
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        .about-section img {
+            width: 100%;
+            height: auto;
+        }
+        .about-section {
+            width: 90%;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 20px;
+        }
+    }
+
+    /* تنظیم تصاویر */
+    .about-section img {
+        width: 45%;
+        height: auto;
+        margin: 10px;
+    }
+
+    .about-section img.float-left {
+        float: left;
+        margin-right: 20px;
+        width: 48%;
+    }
+
+    .about-section img.float-right {
+        float: right;
+        margin-left: 20px;
+        width: 48%;
+    }
+
+    /* تنظیم رنگ پس‌زمینه برای بخش‌های Hakkımızda */
+    .container {
+        
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    /* جلوگیری از تاثیر پس‌زمینه روی هدر */
+    .header {
+        background-color: transparent !important;
+    }
+
+</style>
+{% endblock head %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- بخش Hakkımızda -->
+    <div class="about-section">
+        <h1 class="section-title">Hakkımızda</h1>
+        <p class="text-section">
+            Huzurun, rahatlığın ve konforun adresindesiniz. White Crown Apartman ve Yaşam Merkezi olarak siz değerli misafirlerimize kaliteli hizmet verebilmek için elimizden geldiğinin daha fazlası için çalışmaktayız. Siz değerli misafirlerimizin ihtiyaçları doğrultusunda hızlı ve etkin çözümler üretmek, en iyi hizmeti verebilmek ve beklentilerini en üst düzeyde karşılayabilmek için, tüm White Crown Apartman ve Yaşam Merkezi çalışanları olarak müşteri odaklı bir yaklaşım benimsiyoruz.
+        </p>
+        <img src="{% static 'img/1.jpg' %}" alt="Hakkımızda Görsel 1" class="img-fluid rounded float-left">
+    </div>
+
+    <!-- بخش Vizyonumuz -->
+    <div class="about-section mt-4">
+        <h2 class="section-title">Vizyonumuz</h2>
+        <p class="text-section">
+            White Crown Apartman ve Yaşam Merkezi olarak vizyonumuz, konforlu, güvenli ve kaliteli bir yaşam alanı sunarak misafirlerimizin her ihtiyaçlarını karşılayan, tercih edilen bir konaklama merkezi olmaktır. Sürekli gelişim ve yenilikçi hizmetlerle sektörde liderliği hedefliyoruz.
+        </p>
+        <img src="{% static 'img/4.jpg' %}" alt="Vizyonumuz" class="img-fluid rounded">
+    </div>
+
+    <!-- بخش Misyon -->
+    <div class="about-section mt-4">
+        <h2 class="section-title">Misyon</h2>
+        <p class="text-section">
+            Misyonumuz, misafirlerimize ev konforunda, full eşyalı ve tüm hizmetlerin dahil olduğu daireler sunarak, konaklama deneyimini mükemmel hale getirmektir. Müşteri memnuniyetini en üst düzeyde tutarak, merkezi lokasyon avantajlarımızla rahat, güvenli ve erişilebilir bir yaşam alanı sağlamaya devam ediyoruz.
+        </p>
+        <img src="{% static 'img/2.jpg' %}" alt="Hakkımızda Görsel 2" class="img-fluid rounded float-right">
+    </div>
+
+   
+
+    
+</div>
+{% endblock content %}

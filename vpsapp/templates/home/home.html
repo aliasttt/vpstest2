@@ -1,0 +1,163 @@
+{% extends "partitions/base.html" %}
+
+{% load static %}
+
+{% block head %}
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* اسلایدر تصاویر */
+  .carousel-item {
+    position: relative;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* متن‌ها روی تصاویر */
+  .carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color: white; /* رنگ سفید برای متن */
+    z-index: 2;
+    text-align: center;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* فلش‌ها */
+  .carousel-control-prev, .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 2rem;
+    z-index: 5;
+  }
+
+  /* استایل عکس‌ها */
+  .carousel-item img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* تنظیمات انیمیشن */
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .gallery img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.1);
+  }
+
+  .modal-content img {
+    width: 100%;
+    height: auto;
+  }
+  .map-container {
+    width: 100%;
+    height: 400px;
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+<!-- اسلایدر تصاویر -->
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'img/1.jpg' %}" class="d-block w-100" alt="1">
+      <div class="carousel-caption">
+        <p>خدمات درجه یک</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/2.jpg' %}" class="d-block w-100" alt="2">
+      <div class="carousel-caption">
+        <p>تجربه‌ای بی‌نظیر</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/3.jpg' %}" class="d-block w-100" alt="3">
+      <div class="carousel-caption">
+        <p>پذیرایی شگفت‌انگیز</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/4.jpg' %}" class="d-block w-100" alt="4">
+      <div class="carousel-caption">
+        <p>اتاق‌های لوکس</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">قبلی</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">بعدی</span>
+  </button>
+</div>
+
+<!-- بخش درباره خدمات -->
+<div class="container mt-5">
+  <h2 class="text-center"> hizmetlerimiz</h2>
+  <p class="text-center">dairelerimiz hepsi temiz ucretsiz wifi sabah oda temizligi ve kahvalti dahil darelerde deniz manzeresi ve buyuk balkon imkani var </p>
+</div>
+
+<!-- گالری -->
+<div class="container mt-5">
+  <h2 class="text-center"> galeri</h2>
+  <div class="row gallery">
+    <div class="col-md-3">
+      <img src="{% static 'img/4.jpg' %}" class="img-fluid" alt="1">
+    </div>
+    <div class="col-md-3">
+      <img src="{% static 'img/3.jpg' %}" class="img-fluid" alt="2">
+    </div>
+    <div class="col-md-3">
+      <img src="{% static 'img/2.jpg' %}" class="img-fluid" alt="3">
+    </div>
+    <div class="col-md-3">
+      <img src="{% static 'img/1.jpg' %}" class="img-fluid" alt="4">
+    </div>
+  </div>
+</div>
+
+<!-- نقشه لوکیشن -->
+<div class="container mt-5">
+  <h2 class="text-center">موقعیت هتل</h2>
+  <div id="map" class="map-container"></div>
+</div>
+
+<!-- اسکریپت‌ها -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpvBAoo8smAa9g_F6WT3waQmVkUuyttco&callback=initMap" async defer></script>
+<script>
+  function initMap() {
+    var location = {lat: 41.00017, lng: 28.7935}; // مختصات گرند هتل
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 14,
+      center: location
+    });
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  }
+</script>
+{% endblock content %}

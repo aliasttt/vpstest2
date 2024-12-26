@@ -1,0 +1,122 @@
+{% load static %}
+{% block head %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+
+    .navbar {
+        background-color: #333;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        color: white !important;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+        color: #f0ad4e !important;
+    }
+
+    .navbar-toggler {
+        background-color: #f0ad4e !important;
+        border: none;
+    }
+
+    .navbar-toggler-icon {
+        background-color: white !important;
+    }
+
+    .navbar-collapse {
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-nav {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    @media (max-width: 768px) {
+        .navbar-nav {
+            flex-direction: column;
+        }
+
+        .navbar-toggler {
+            background-color: #f0ad4e !important;
+        }
+
+        .navbar-toggler-icon {
+            background-color: white !important;
+        }
+    }
+
+    /* استایل برای دکمه‌های تماس در پایین سمت چپ */
+    .contact-buttons {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+
+    .contact-buttons img {
+        width: 50px;  /* اندازه لوگو */
+        height: 50px;
+        border-radius: 50%;  /* برای گرد کردن لوگو */
+    }
+
+    .btn {
+        margin: 5px;
+    }
+</style>
+{% endblock head %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Grand Hotel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navbarToggle">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'vpsapp:aboutus' %}">Hakkımızda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "vpsapp:contactus" %}">İletişim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "vpsapp:rooms" %}">Dairelerimiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "vpsapp:home" %}">Ana Sayfa</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+
+<!-- دکمه WhatsApp ثابت در گوشه پایین سمت چپ با آیکن -->
+<div class="contact-buttons">
+    <a href="https://wa.me/+1234567890" target="_blank">
+        <!-- آیکن واتس‌اپ -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+</div>
+
+<!-- اسکریپت جاوااسکریپت برای کشو -->
+<script>
+    document.getElementById('navbarToggle').addEventListener('click', function() {
+        var collapseElement = document.getElementById('navbarNav');
+        var expanded = this.getAttribute('aria-expanded');
+
+        // تغییر aria-expanded هنگام باز و بسته شدن کشو
+        this.setAttribute('aria-expanded', !expanded);
+
+        // تغییر وضعیت نمایش کشو با استفاده از classList.toggle
+        collapseElement.classList.toggle('show');
+    });
+</script>
+
+{% endblock content %}
