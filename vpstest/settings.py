@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-gh9=q!5-#&d2==_lz2n)_^f5a)-htg+u=%-h%y&u!7a76q83$k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['45.94.4.205', 'zebrashop.com.tr', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [ "*" ]#'45.94.4.205', 'zebrashop.com.tr', 'localhost', '127.0.0.1']
 
 
 # Application definition
