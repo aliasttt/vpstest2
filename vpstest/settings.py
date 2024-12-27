@@ -164,3 +164,10 @@ EMAIL_HOST_USER = 'aliasadi3853@gmail.com'
 EMAIL_HOST_PASSWORD = 'spplwkgtxdfrurpe'
 EMAIL_USE_TLS = True
 
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
