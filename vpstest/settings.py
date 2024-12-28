@@ -38,6 +38,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'vpstest.urls'
@@ -111,6 +112,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # Collect static files here
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Your static files directory
 ]
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Media files (e.g. images uploaded by users)
 MEDIA_URL = '/media/'
