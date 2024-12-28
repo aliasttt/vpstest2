@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-gh9=q!5-#&d2==_lz2n)_^f5a)-htg+u=%-h%y&u!7a76q83$k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [ "*" ]#'45.94.4.205', 'zebrashop.com.tr', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [ "*" ]  # You can add specific domains here if needed.
 
 
 # Application definition
@@ -106,39 +106,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATIC_URL = '/static/'  # Ensure this is a valid static URL
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Collect static files here
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "static",  # Your static files directory
 ]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+# Media files (e.g. images uploaded by users)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
+# Session settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Save sessions in DB
+SESSION_COOKIE_AGE = 1209600  # Session age (in seconds, two weeks)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # End session when browser closes
 
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # ذخیره session در دیتابیس
-SESSION_COOKIE_AGE = 1209600  # طول عمر session (در ثانیه، اینجا دو هفته)
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # پایان session با بسته شدن مرورگر
-
-
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
-
-# pip freeze > requirements.txt
-
+# Security settings
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
-
 
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
@@ -146,17 +135,14 @@ SECURE_HSTS_PRELOAD = True
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
-
 X_FRAME_OPTIONS = 'DENY'
 
+# Axes settings for login attempts (optional, for brute-force protection)
+AXES_FAILURE_LIMIT = 5
+AXES_COOLOFF_TIME = 24  # In hours
 
 
-AXES_FAILURE_LIMIT = 5  # تعداد دفعات تلاش ناموفق قبل از مسدودسازی
-AXES_COOLOFF_TIME = 24  # زمان مسدودسازی به ساعت
-
-
-
-
+# Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -165,9 +151,13 @@ EMAIL_HOST_PASSWORD = 'spplwkgtxdfrurpe'
 EMAIL_USE_TLS = True
 
 
+# Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# Crispy forms settings (optional, for styling)
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+# Make sure this is the final version of the settings for static files.
