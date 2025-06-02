@@ -1,0 +1,84 @@
+{% load static %}
+
+<!-- Primary Meta Tags -->
+<title>{% block title %}Grand Hotel - Lüks Konaklama{% endblock %}</title>
+<meta name="title" content="{% block meta_title %}Grand Hotel - Lüks Konaklama{% endblock %}">
+<meta name="description" content="{% block meta_description %}İstanbul'un kalbinde lüks ve konforlu konaklama deneyimi. Deniz manzaralı odalar, özel hizmetler ve unutulmaz bir tatil için Grand Hotel'i tercih edin.{% endblock %}">
+<meta name="keywords" content="{% block meta_keywords %}otel, istanbul, lüks otel, konaklama, tatil, deniz manzarası, rezervasyon{% endblock %}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="{% block og_title %}Grand Hotel - Lüks Konaklama{% endblock %}">
+<meta property="og:description" content="{% block og_description %}İstanbul'un kalbinde lüks ve konforlu konaklama deneyimi. Deniz manzaralı odalar, özel hizmetler ve unutulmaz bir tatil için Grand Hotel'i tercih edin.{% endblock %}">
+<meta property="og:image" content="{% block og_image %}{% static 'img/og-image.jpg' %}{% endblock %}">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{ request.build_absolute_uri }}">
+<meta property="twitter:title" content="{% block twitter_title %}Grand Hotel - Lüks Konaklama{% endblock %}">
+<meta property="twitter:description" content="{% block twitter_description %}İstanbul'un kalbinde lüks ve konforlu konaklama deneyimi. Deniz manzaralı odalar, özel hizmetler ve unutulmaz bir tatil için Grand Hotel'i tercih edin.{% endblock %}">
+<meta property="twitter:image" content="{% block twitter_image %}{% static 'img/og-image.jpg' %}{% endblock %}">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+<!-- Language Alternates -->
+<link rel="alternate" hreflang="tr" href="{{ request.build_absolute_uri }}">
+<link rel="alternate" hreflang="en" href="{{ request.build_absolute_uri }}?lang=en">
+
+<!-- Robots Meta -->
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+
+<!-- Mobile Specific Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#ffc107">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+<link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+
+<!-- Schema.org markup for Google -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Hotel",
+    "name": "Grand Hotel",
+    "image": "{% static 'img/og-image.jpg' %}",
+    "description": "İstanbul'un kalbinde lüks ve konforlu konaklama deneyimi.",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Örnek Mahallesi, Örnek Sokak No:1",
+        "addressLocality": "İstanbul",
+        "addressRegion": "İstanbul",
+        "postalCode": "34000",
+        "addressCountry": "TR"
+    },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.00017,
+        "longitude": 28.7935
+    },
+    "url": "{{ request.build_absolute_uri }}",
+    "telephone": "+902121234567",
+    "priceRange": "₺₺₺",
+    "amenityFeature": [
+        {
+            "@type": "LocationFeatureSpecification",
+            "name": "Wi-Fi",
+            "value": true
+        },
+        {
+            "@type": "LocationFeatureSpecification",
+            "name": "Havuz",
+            "value": true
+        },
+        {
+            "@type": "LocationFeatureSpecification",
+            "name": "Spa",
+            "value": true
+        }
+    ]
+}
+</script> 

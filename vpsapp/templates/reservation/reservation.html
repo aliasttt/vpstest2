@@ -1,0 +1,326 @@
+{% extends 'partitions/base.html' %}
+{% load static %}
+
+{% block title %}Grand Hotel - Rezervasyon{% endblock %}
+
+{% block head %}
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #34495e;
+        --accent-color: #e74c3c;
+        --text-color: #333;
+        --light-bg: #f8f9fa;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: var(--text-color);
+    }
+
+    /* Hero Section */
+    .hero-section {
+        position: relative;
+        height: 50vh;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{% static "images/hero-1.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    .hero-content {
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Reservation Form Section */
+    .reservation-section {
+        padding: 5rem 0;
+        background: var(--light-bg);
+    }
+
+    .reservation-form {
+        background: white;
+        padding: 3rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+    }
+
+    .btn-submit {
+        background: var(--accent-color);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background: var(--primary-color);
+        transform: translateY(-3px);
+    }
+
+    /* Room Details Section */
+    .room-details {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+
+    .room-image {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+    }
+
+    .room-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .room-info h3 {
+        font-size: 1.8rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .room-info p {
+        color: #666;
+        margin-bottom: 1rem;
+    }
+
+    .room-features {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--secondary-color);
+    }
+
+    .feature i {
+        color: var(--accent-color);
+    }
+
+    .room-price {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+        
+        .hero-content p {
+            font-size: 1rem;
+        }
+        
+        .reservation-form {
+            padding: 2rem;
+        }
+        
+        .room-details {
+            margin-bottom: 2rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Rezervasyon</h1>
+        <p>Odanızı hemen rezerve edin</p>
+    </div>
+</section>
+
+<!-- Reservation Section -->
+<section class="reservation-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="reservation-form">
+                    <h2 class="text-center mb-4">Rezervasyon Formu</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="guest_name" placeholder="Adınız Soyadınız" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="guest_email" placeholder="E-posta Adresiniz" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" name="guest_phone" placeholder="Telefon Numaranız" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select class="form-control" name="room" required>
+                                        <option value="">Oda Seçin</option>
+                                        {% for room in rooms %}
+                                        <option value="{{ room.id }}">{{ room.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="date" class="form-control" name="check_in" placeholder="Giriş Tarihi" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="date" class="form-control" name="check_out" placeholder="Çıkış Tarihi" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="adults" placeholder="Yetişkin Sayısı" min="1" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="children" placeholder="Çocuk Sayısı" min="0" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="special_requests" rows="4" placeholder="Özel İstekleriniz"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn-submit">Rezervasyon Yap</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="room-details">
+                    <div class="room-image">
+                        <img src="{% static 'images/room-1.jpg' %}" alt="Room">
+                    </div>
+                    <div class="room-info">
+                        <h3>Deluxe Oda</h3>
+                        <p>Modern tasarım ve lüks detaylarla donatılmış deluxe odalarımız, konforlu bir konaklama için ideal seçimdir.</p>
+                        <div class="room-features">
+                            <div class="feature">
+                                <i class="bi bi-people"></i>
+                                <span>2 Kişilik</span>
+                            </div>
+                            <div class="feature">
+                                <i class="bi bi-arrows-angle-expand"></i>
+                                <span>45m²</span>
+                            </div>
+                        </div>
+                        <div class="room-price">
+                            2,500 TL / Gece
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Add your form submission logic here
+        alert('Rezervasyonunuz başarıyla alındı!');
+        this.reset();
+    });
+
+    // Date validation
+    const checkInInput = document.querySelector('input[name="check_in"]');
+    const checkOutInput = document.querySelector('input[name="check_out"]');
+
+    checkInInput.addEventListener('change', function() {
+        checkOutInput.min = this.value;
+    });
+
+    checkOutInput.addEventListener('change', function() {
+        checkInInput.max = this.value;
+    });
+</script>
+{% endblock %} 

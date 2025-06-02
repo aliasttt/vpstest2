@@ -1,257 +1,201 @@
-{% extends "partitions/base.html" %}
+{% extends 'partitions/base.html' %}
 {% load static %}
-{% block head %}
-<title>Dairelerimiz</title>
-<!-- Include Bootstrap Carousel CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+{% block title %}Grand Hotel - Odalar{% endblock %}
+
+{% block page_title %}Odalarımız{% endblock %}
+{% block page_subtitle %}Size özel lüks ve konfor{% endblock %}
+
+{% block content %}
+<!-- Rooms Section -->
+<section class="rooms-section py-5">
+    <div class="container">
+        <!-- Deluxe Room -->
+        <div class="room-card mb-5" data-aos="fade-up">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="room-gallery position-relative">
+                        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&auto=format&fit=crop" alt="Deluxe Room" class="img-fluid rounded shadow">
+                        <div class="room-overlay">
+                            <h3>Deluxe Oda</h3>
+                            <p class="price">₺1,500 / gece</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="room-info p-4">
+                        <h2 class="mb-4">Deluxe Oda</h2>
+                        <p class="lead mb-4">Modern tasarım ve lüks detaylarla donatılmış geniş odalarımızda unutulmaz bir konaklama deneyimi yaşayın.</p>
+                        <ul class="room-features mb-4">
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>35 m² genişlik</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>King size yatak</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Özel balkon</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Mini bar</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Ücretsiz Wi-Fi</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Rezervasyon Yap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suite Room -->
+        <div class="room-card mb-5" data-aos="fade-up">
+            <div class="row align-items-center flex-lg-row-reverse">
+                <div class="col-lg-6">
+                    <div class="room-gallery position-relative">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&auto=format&fit=crop" alt="Suite Room" class="img-fluid rounded shadow">
+                        <div class="room-overlay">
+                            <h3>Suite Oda</h3>
+                            <p class="price">₺2,500 / gece</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="room-info p-4">
+                        <h2 class="mb-4">Suite Oda</h2>
+                        <p class="lead mb-4">Ayrı oturma alanı ve özel jakuzi ile lüksün doruklarına ulaşın.</p>
+                        <ul class="room-features mb-4">
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>50 m² genişlik</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Özel oturma alanı</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Jakuzi</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Butler servisi</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Özel teras</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Rezervasyon Yap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Executive Room -->
+        <div class="room-card" data-aos="fade-up">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="room-gallery position-relative">
+                        <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800&auto=format&fit=crop" alt="Executive Room" class="img-fluid rounded shadow">
+                        <div class="room-overlay">
+                            <h3>Executive Oda</h3>
+                            <p class="price">₺3,500 / gece</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="room-info p-4">
+                        <h2 class="mb-4">Executive Oda</h2>
+                        <p class="lead mb-4">İş seyahatleri için özel olarak tasarlanmış, tüm modern imkanları sunan odalarımız.</p>
+                        <ul class="room-features mb-4">
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>45 m² genişlik</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Çalışma alanı</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Executive lounge erişimi</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Özel check-in</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Kahvaltı dahil</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Rezervasyon Yap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <style>
-  /* Animation for cards */
-  .card-wrapper {
-    opacity: 0;
-    transform: translateY(-50px);
-    animation: fadeInDown 1s forwards;
-  }
-  @keyframes fadeInDown {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+.room-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
 
-  /* Feature List Styles */
-  .features-list {
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.room-gallery {
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.room-gallery img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.room-card:hover .room-gallery img {
+    transform: scale(1.05);
+}
+
+.room-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-  }
+    color: white;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
 
-  .features-list h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
+.room-card:hover .room-overlay {
+    opacity: 1;
+}
 
-  .features-list ul {
+.room-overlay h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.room-overlay .price {
+    margin: 5px 0 0;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.room-info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.room-features {
     list-style: none;
     padding: 0;
     margin: 0;
-  }
+}
 
-  .features-list li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
+.room-features li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
 
-  .features-list i {
-    font-size: 24px;
-    color: #4CAF50;
-    margin-right: 10px;
-  }
+.btn-primary {
+    padding: 12px 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
 
-  .features-list span {
-    font-size: 16px;
-    color: #555;
-  }
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
 
-  /* Lightbox styling */
-  .lightbox-img {
-    cursor: zoom-in;
-    max-width: 100%;
-    height: auto;
-  }
+@media (max-width: 991px) {
+    .room-gallery img {
+        height: 300px;
+    }
+    
+    .room-info {
+        padding: 30px !important;
+    }
+}
 </style>
-{% endblock head %}
-
-{% block content %}
-
-<!-- Header -->
-<header class="bg-dark text-white text-center py-3">
-  <h1>Dairelerimiz</h1>
-</header>
-
-<!-- Daireler Section -->
-<div class="container my-5 card-wrapper">
-  <div class="row g-4">
-    <!-- Example Card -->
-    <div class="col-md-4">
-      <div class="card">
-        <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{% static 'img/2.jpg' %}" class="d-block w-100 lightbox-img" alt="1+0" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'img/3.jpg' %}" class="d-block w-100 lightbox-img" alt="1+0" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">1+0 Daire</h5>
-          <p class="card-text">Tek kişilik ideal bir daire.</p>
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#details1" aria-expanded="false" aria-controls="details1">
-            Detaylar
-          </button>
-        </div>
-      </div>
-      <!-- Collapse Section -->
-      <div class="collapse mt-3" id="details1">
-        <div class="card card-body">
-          <p>1+0 daire hakkında detaylı bilgiler burada yazılır.</p>
-          <!-- Feature List -->
-          <div class="features-list">
-            <h3>1+0 Standart Apartman Dairesi Özellikleri</h3>
-            <ul>
-              <li><i class="fas fa-tv"></i> <span>Televizyon: Eğlence ve bilgi ihtiyaçlarınızı karşılamak için bir televizyon bulunmaktadır.</span></li>
-              <li><i class="fas fa-utensils"></i> <span>Mutfak: Yemek hazırlığı yapabileceğiniz bir mutfak mevcuttur.</span></li>
-              <li><i class="fas fa-ice-cream"></i> <span>Buzdolabı: Gıda saklama ihtiyaçlarınızı karşılamak için bir buzdolabı bulunmaktadır.</span></li>
-              <li><i class="fas fa-tshirt"></i> <span>Çamaşır Makinesi: Çamaşır yıkama işlemleriniz için bir çamaşır makinesi mevcuttur.</span></li>
-              <li><i class="fas fa-couch"></i> <span>Çekyat: Misafirlerinizi ağırlamak veya ek bir yatak olarak kullanabileceğiniz bir çekyat bulunmaktadır.</span></li>
-              <li><i class="fas fa-closet"></i> <span>Dolap: Kıyafetlerinizi ve diğer eşyalarınızı düzenli bir şekilde saklayabileceğiniz bir dolap mevcuttur.</span></li>
-              <li><i class="fas fa-bed"></i> <span>İki Yatak: Konforlu bir uyku için iki ayrı yatak bulunmaktadır.</span></li>
-              <li><i class="fas fa-wind"></i> <span>Klima: Konforunuz için klima bulunmaktadır.</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card">
-          <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{% static 'img/2.jpg' %}" class="d-block w-100 lightbox-img" alt="1+0" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-              </div>
-              <div class="carousel-item">
-                <img src="{% static 'img/3.jpg' %}" class="d-block w-100 lightbox-img" alt="1+0" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">1+0 Daire</h5>
-            <p class="card-text">Tek kişilik ideal bir daire.</p>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#details1" aria-expanded="false" aria-controls="details1">
-              Detaylar
-            </button>
-          </div>
-        </div>
-        <!-- Collapse Section -->
-        <div class="collapse mt-3" id="details1">
-          <div class="card card-body">
-            <p>1+0 daire hakkında detaylı bilgiler burada yazılır.</p>
-            <!-- Feature List -->
-            <div class="features-list">
-              <h3>1+0 Standart Apartman Dairesi Özellikleri</h3>
-              <ul>
-                <li><i class="fas fa-tv"></i> <span>Televizyon: Eğlence ve bilgi ihtiyaçlarınızı karşılamak için bir televizyon bulunmaktadır.</span></li>
-                <li><i class="fas fa-utensils"></i> <span>Mutfak: Yemek hazırlığı yapabileceğiniz bir mutfak mevcuttur.</span></li>
-                <li><i class="fas fa-ice-cream"></i> <span>Buzdolabı: Gıda saklama ihtiyaçlarınızı karşılamak için bir buzdolabı bulunmaktadır.</span></li>
-                <li><i class="fas fa-tshirt"></i> <span>Çamaşır Makinesi: Çamaşır yıkama işlemleriniz için bir çamaşır makinesi mevcuttur.</span></li>
-                <li><i class="fas fa-couch"></i> <span>Çekyat: Misafirlerinizi ağırlamak veya ek bir yatak olarak kullanabileceğiniz bir çekyat bulunmaktadır.</span></li>
-                <li><i class="fas fa-closet"></i> <span>Dolap: Kıyafetlerinizi ve diğer eşyalarınızı düzenli bir şekilde saklayabileceğiniz bir dolap mevcuttur.</span></li>
-                <li><i class="fas fa-bed"></i> <span>İki Yatak: Konforlu bir uyku için iki ayrı yatak bulunmaktadır.</span></li>
-                <li><i class="fas fa-wind"></i> <span>Klima: Konforunuz için klima bulunmaktadır.</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-md-4">
-        <div class="card">
-          <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{% static 'img/2.jpg' %}" class="d-block w-100 lightbox-img" alt="1+0" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-              </div>
-              <div class="carousel-item">
-                <img src="{% static 'img/3.jpg' %}" class="d-block w-100 lightbox-img" alt="1+0" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">1+0 Daire</h5>
-            <p class="card-text">Tek kişilik ideal bir daire.</p>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#details1" aria-expanded="false" aria-controls="details1">
-              Detaylar
-            </button>
-          </div>
-        </div>
-        <!-- Collapse Section -->
-        <div class="collapse mt-3" id="details1">
-          <div class="card card-body">
-            <p>1+0 daire hakkında detaylı bilgiler burada yazılır.</p>
-            <!-- Feature List -->
-            <div class="features-list">
-              <h3>1+0 Standart Apartman Dairesi Özellikleri</h3>
-              <ul>
-                <li><i class="fas fa-tv"></i> <span>Televizyon: Eğlence ve bilgi ihtiyaçlarınızı karşılamak için bir televizyon bulunmaktadır.</span></li>
-                <li><i class="fas fa-utensils"></i> <span>Mutfak: Yemek hazırlığı yapabileceğiniz bir mutfak mevcuttur.</span></li>
-                <li><i class="fas fa-ice-cream"></i> <span>Buzdolabı: Gıda saklama ihtiyaçlarınızı karşılamak için bir buzdolabı bulunmaktadır.</span></li>
-                <li><i class="fas fa-tshirt"></i> <span>Çamaşır Makinesi: Çamaşır yıkama işlemleriniz için bir çamaşır makinesi mevcuttur.</span></li>
-                <li><i class="fas fa-couch"></i> <span>Çekyat: Misafirlerinizi ağırlamak veya ek bir yatak olarak kullanabileceğiniz bir çekyat bulunmaktadır.</span></li>
-                <li><i class="fas fa-closet"></i> <span>Dolap: Kıyafetlerinizi ve diğer eşyalarınızı düzenli bir şekilde saklayabileceğiniz bir dolap mevcuttur.</span></li>
-                <li><i class="fas fa-bed"></i> <span>İki Yatak: Konforlu bir uyku için iki ayrı yatak bulunmaktadır.</span></li>
-                <li><i class="fas fa-wind"></i> <span>Klima: Konforunuz için klima bulunmaktadır.</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-  </div>
-</div>
-
-
-
-<!-- Modal for Image Zoom -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <img src="{% static 'img/2.jpg' %}" class="w-100" alt="1+0">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<!-- Include Bootstrap and JS for Carousel and Modal -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-{% endblock content %}
+{% endblock %}

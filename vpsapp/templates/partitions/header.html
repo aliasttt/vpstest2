@@ -70,27 +70,38 @@
 {% endblock head %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Grand Hotel</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navbarToggle">
+        <a class="navbar-brand" href="{% url 'vpsapp:home' %}">
+            <img src="{% static 'img/logo.png' %}" alt="Grand Hotel Logo" height="40" class="d-inline-block align-text-top">
+            Grand Hotel
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'vpsapp:aboutus' %}">Hakkımızda</a>
+                    <a class="nav-link" href="{% url 'vpsapp:home' %}">Ana Sayfa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url "vpsapp:contactus" %}">İletişim</a>
+                    <a class="nav-link" href="{% url 'vpsapp:rooms' %}">Odalarımız</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url "vpsapp:rooms" %}">Dairelerimiz</a>
+                    <a class="nav-link" href="{% url 'vpsapp:about_us' %}">Hakkımızda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url "vpsapp:home" %}">Ana Sayfa</a>
+                    <a class="nav-link" href="{% url 'vpsapp:contact_us' %}">İletişim</a>
                 </li>
             </ul>
+            <div class="d-flex">
+                <a href="tel:+902121234567" class="btn btn-outline-light me-2">
+                    <i class="bi bi-telephone"></i> +90 212 123 45 67
+                </a>
+                <a href="https://wa.me/+905551234567" class="btn btn-success" target="_blank">
+                    <i class="bi bi-whatsapp"></i> WhatsApp
+                </a>
+            </div>
         </div>
     </div>
 </nav>

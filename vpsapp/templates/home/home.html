@@ -1,163 +1,441 @@
-{% extends "partitions/base.html" %}
+{% extends 'partitions/base.html' %}
 
 {% load static %}
 
+{% block title %}Grand Hotel - Ana Sayfa{% endblock %}
+
+{% block page_title %}Grand Hotel'e Hoş Geldiniz{% endblock %}
+{% block page_subtitle %}Lüks ve konforun buluştuğu nokta{% endblock %}
+
 {% block head %}
 <style>
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #34495e;
+        --accent-color: #e74c3c;
+        --text-color: #333;
+        --light-bg: #f8f9fa;
+    }
+
   body {
-    font-family: 'Arial', sans-serif;
-  }
+        font-family: 'Poppins', sans-serif;
+        color: var(--text-color);
+    }
 
-  /* اسلایدر تصاویر */
-  .carousel-item {
-    position: relative;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    /* Hero Section */
+    .hero-section {
+        position: relative;
+        height: 100vh;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        margin-top: -120px;
+    }
 
-  /* متن‌ها روی تصاویر */
-  .carousel-caption {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2rem;
-    font-weight: bold;
-    color: white; /* رنگ سفید برای متن */
-    z-index: 2;
-    text-align: center;
-    transition: opacity 0.5s ease-in-out;
-  }
+    .hero-content {
+        animation: fadeInUp 1s ease;
+    }
 
-  /* فلش‌ها */
-  .carousel-control-prev, .carousel-control-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 2rem;
-    z-index: 5;
-  }
+    .hero-content h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
 
-  /* استایل عکس‌ها */
-  .carousel-item img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
+    .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
 
-  /* تنظیمات انیمیشن */
-  @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
+    .btn-hero {
+        background: var(--accent-color);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    }
 
-  .gallery img {
-    width: 100%;
-    height: auto;
-    transition: transform 0.3s ease;
-  }
+    .btn-hero:hover {
+        background: var(--primary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(44, 62, 80, 0.3);
+        color: white;
+    }
 
-  .gallery img:hover {
-    transform: scale(1.1);
-  }
+    /* Services Section */
+    .services-section {
+        padding: 100px 0;
+        background: var(--light-bg);
+    }
 
-  .modal-content img {
-    width: 100%;
-    height: auto;
-  }
-  .map-container {
-    width: 100%;
-    height: 400px;
-  }
+    .service-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        height: 100%;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .service-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--primary-color);
+        border-radius: 50%;
+        color: white;
+        font-size: 2rem;
+    }
+
+    .service-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+
+    .service-description {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+        padding: 100px 0;
+        background: white;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 50px;
+    }
+
+    .gallery-item {
+        position: relative;
+        height: 300px;
+        overflow: hidden;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+    }
+
+    .gallery-title {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-title {
+        transform: translateY(0);
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+        padding: 100px 0;
+        background: var(--light-bg);
+    }
+
+    .testimonial-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .testimonial-text {
+        font-size: 1.1rem;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .author-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .author-info h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+    }
+
+    .author-info p {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 3rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+        }
+
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
-{% endblock head %}
+{% endblock %}
 
 {% block content %}
-<!-- اسلایدر تصاویر -->
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{% static 'img/1.jpg' %}" class="d-block w-100" alt="1">
-      <div class="carousel-caption">
-        <p>خدمات درجه یک</p>
-      </div>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Grand Hotel'e Hoş Geldiniz</h1>
+        <p>Lüks ve konforun buluştuğu nokta</p>
+        <a href="{% url 'rooms' %}" class="btn-hero">Odalarımızı Keşfedin</a>
     </div>
-    <div class="carousel-item">
-      <img src="{% static 'img/2.jpg' %}" class="d-block w-100" alt="2">
-      <div class="carousel-caption">
-        <p>تجربه‌ای بی‌نظیر</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'img/3.jpg' %}" class="d-block w-100" alt="3">
-      <div class="carousel-caption">
-        <p>پذیرایی شگفت‌انگیز</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'img/4.jpg' %}" class="d-block w-100" alt="4">
-      <div class="carousel-caption">
-        <p>اتاق‌های لوکس</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">قبلی</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">بعدی</span>
-  </button>
-</div>
+</section>
 
-<!-- بخش درباره خدمات -->
-<div class="container mt-5">
-  <h2 class="text-center"> hizmetlerimiz</h2>
-  <p class="text-center">dairelerimiz hepsi temiz ucretsiz wifi sabah oda temizligi ve kahvalti dahil darelerde deniz manzeresi ve buyuk balkon imkani var </p>
-</div>
+<!-- Services Section -->
+<section class="services-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4" data-aos="fade-up">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-cup-hot"></i>
+                    </div>
+                    <h3 class="service-title">Restoran</h3>
+                    <p class="service-description">
+                        Dünya mutfağından seçkin lezzetler sunan restoranımızda unutulmaz bir yemek deneyimi yaşayın.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-water"></i>
+                    </div>
+                    <h3 class="service-title">Havuz</h3>
+                    <p class="service-description">
+                        Açık ve kapalı havuzlarımızda yıl boyunca yüzme keyfini yaşayın.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-spa"></i>
+                    </div>
+                    <h3 class="service-title">Spa & Wellness</h3>
+                    <p class="service-description">
+                        Profesyonel ekibimizle tam bir rahatlama ve yenilenme deneyimi yaşayın.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<!-- گالری -->
-<div class="container mt-5">
-  <h2 class="text-center"> galeri</h2>
-  <div class="row gallery">
-    <div class="col-md-3">
-      <img src="{% static 'img/4.jpg' %}" class="img-fluid" alt="1">
+<!-- Gallery Section -->
+<section class="gallery-section">
+    <div class="container">
+        <h2 class="text-center mb-5" data-aos="fade-up">Otelimizden Kareler</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop" alt="Hotel Lobby">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Lobi</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&auto=format&fit=crop" alt="Restaurant">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Restoran</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800&auto=format&fit=crop" alt="Pool">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Havuz</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&auto=format&fit=crop" alt="Spa">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Spa</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1590490359683-658d3d23f972?w=800&auto=format&fit=crop" alt="Gym">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Fitness Merkezi</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&auto=format&fit=crop" alt="Bar">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Bar</h3>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-      <img src="{% static 'img/3.jpg' %}" class="img-fluid" alt="2">
-    </div>
-    <div class="col-md-3">
-      <img src="{% static 'img/2.jpg' %}" class="img-fluid" alt="3">
-    </div>
-    <div class="col-md-3">
-      <img src="{% static 'img/1.jpg' %}" class="img-fluid" alt="4">
-    </div>
-  </div>
-</div>
+</section>
 
-<!-- نقشه لوکیشن -->
-<div class="container mt-5">
-  <h2 class="text-center">موقعیت هتل</h2>
-  <div id="map" class="map-container"></div>
-</div>
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="text-center mb-5" data-aos="fade-up">Misafirlerimizin Yorumları</h2>
+        <div class="row">
+            <div class="col-lg-4" data-aos="fade-up">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Harika bir konaklama deneyimi yaşadık. Personel çok ilgili, odalar temiz ve konforlu."
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop" alt="Guest" class="author-image">
+                        <div class="author-info">
+                            <h4>Ayşe Yılmaz</h4>
+                            <p>İstanbul</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Restoran ve spa hizmetleri muhteşem. Kesinlikle tekrar geleceğiz."
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" alt="Guest" class="author-image">
+                        <div class="author-info">
+                            <h4>Mehmet Demir</h4>
+                            <p>Ankara</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Deniz manzaralı odamız ve gün batımı manzarası unutulmazdı. Teşekkürler!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop" alt="Guest" class="author-image">
+                        <div class="author-info">
+                            <h4>Zeynep Kaya</h4>
+                            <p>İzmir</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
 
-<!-- اسکریپت‌ها -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpvBAoo8smAa9g_F6WT3waQmVkUuyttco&callback=initMap" async defer></script>
+{% block scripts %}
 <script>
-  function initMap() {
-    var location = {lat: 41.00017, lng: 28.7935}; // مختصات گرند هتل
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 14,
-      center: location
+    // Hero Slider
+    const slides = document.querySelectorAll('.hero-slide');
+    const heroContent = document.querySelector('.hero-content');
+    let currentSlide = 0;
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        heroContent.classList.remove('active');
+        
+        currentSlide = (currentSlide + 1) % slides.length;
+        
+        slides[currentSlide].classList.add('active');
+        setTimeout(() => {
+            heroContent.classList.add('active');
+        }, 500);
+    }
+
+    // Change slide every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
     });
-    var marker = new google.maps.Marker({
-      position: location,
-      map: map
-    });
-  }
 </script>
-{% endblock content %}
+{% endblock %}

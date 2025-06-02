@@ -1,0 +1,298 @@
+{% extends 'partitions/base.html' %}
+{% load static %}
+
+{% block title %}Grand Hotel - İletişim{% endblock %}
+
+{% block head %}
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #34495e;
+        --accent-color: #e74c3c;
+        --text-color: #333;
+        --light-bg: #f8f9fa;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: var(--text-color);
+    }
+
+    /* Hero Section */
+    .hero-section {
+        position: relative;
+        height: 50vh;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{% static "images/hero-3.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    .hero-content {
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Contact Info Section */
+    .contact-info-section {
+        padding: 5rem 0;
+        background: var(--light-bg);
+    }
+
+    .contact-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+        margin-bottom: 2rem;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .contact-icon {
+        font-size: 2.5rem;
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-card h3 {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .contact-card p {
+        color: #666;
+        margin-bottom: 0;
+    }
+
+    /* Contact Form Section */
+    .contact-form-section {
+        padding: 5rem 0;
+    }
+
+    .contact-form {
+        background: white;
+        padding: 3rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+    }
+
+    .btn-submit {
+        background: var(--accent-color);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background: var(--primary-color);
+        transform: translateY(-3px);
+    }
+
+    /* Map Section */
+    .map-section {
+        padding: 5rem 0;
+        background: var(--light-bg);
+    }
+
+    .map-container {
+        height: 400px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+        
+        .hero-content p {
+            font-size: 1rem;
+        }
+        
+        .contact-form {
+            padding: 2rem;
+        }
+        
+        .contact-card {
+            margin-bottom: 2rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>İletişim</h1>
+        <p>Bizimle iletişime geçin</p>
+    </div>
+</section>
+
+<!-- Contact Info Section -->
+<section class="contact-info-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <i class="bi bi-geo-alt-fill contact-icon"></i>
+                    <h3>Adres</h3>
+                    <p>
+                        Taksim Meydanı No:1<br>
+                        Şişli, İstanbul<br>
+                        34435
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <i class="bi bi-telephone-fill contact-icon"></i>
+                    <h3>Telefon</h3>
+                    <p>
+                        +90 212 123 45 67<br>
+                        +90 212 123 45 68
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <i class="bi bi-envelope-fill contact-icon"></i>
+                    <h3>E-posta</h3>
+                    <p>
+                        info@grandhotel.com<br>
+                        rezervasyon@grandhotel.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="contact-form-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-form">
+                    <h2 class="text-center mb-4">Bize Ulaşın</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name" placeholder="Adınız" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="E-posta Adresiniz" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="subject" placeholder="Konu" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Mesajınız" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn-submit">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="map-section">
+    <div class="container">
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.443928592834!2d28.985563315414!3d41.037002979298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7650656bd63%3A0x8ca058b28c20b6c3!2zVGFrc2ltIE1leWRhbsSxLCBHw7xtw7zFn3N1eXUsIDM0NDM1IEJleW_En2x1L8Swc3RhbmJ1bA!5e0!3m2!1str!2str!4v1647881234567!5m2!1str!2str" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Add your form submission logic here
+        alert('Mesajınız başarıyla gönderildi!');
+        this.reset();
+    });
+</script>
+{% endblock %} 

@@ -1,0 +1,336 @@
+{% extends 'partitions/base.html' %}
+{% load static %}
+
+{% block title %}Grand Hotel - Değerlendirme{% endblock %}
+
+{% block head %}
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #34495e;
+        --accent-color: #e74c3c;
+        --text-color: #333;
+        --light-bg: #f8f9fa;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: var(--text-color);
+    }
+
+    /* Hero Section */
+    .hero-section {
+        position: relative;
+        height: 50vh;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{% static "images/hero-1.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    .hero-content {
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Review Section */
+    .review-section {
+        padding: 5rem 0;
+        background: var(--light-bg);
+    }
+
+    .review-form {
+        background: white;
+        padding: 3rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+    }
+
+    .btn-submit {
+        background: var(--accent-color);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background: var(--primary-color);
+        transform: translateY(-3px);
+    }
+
+    /* Rating Stars */
+    .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+
+    .rating input {
+        display: none;
+    }
+
+    .rating label {
+        cursor: pointer;
+        font-size: 2rem;
+        color: #ddd;
+        transition: all 0.3s ease;
+    }
+
+    .rating label:hover,
+    .rating label:hover ~ label,
+    .rating input:checked ~ label {
+        color: var(--accent-color);
+    }
+
+    /* Previous Reviews */
+    .previous-reviews {
+        margin-top: 4rem;
+    }
+
+    .review-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+
+    .review-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .reviewer-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 1rem;
+    }
+
+    .reviewer-info h4 {
+        margin: 0;
+        color: var(--primary-color);
+    }
+
+    .review-date {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .review-rating {
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+    }
+
+    .review-content {
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+        
+        .hero-content p {
+            font-size: 1rem;
+        }
+        
+        .review-form {
+            padding: 2rem;
+        }
+        
+        .review-card {
+            padding: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Değerlendirme</h1>
+        <p>Deneyiminizi bizimle paylaşın</p>
+    </div>
+</section>
+
+<!-- Review Section -->
+<section class="review-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="review-form">
+                    <h2 class="text-center mb-4">Değerlendirme Formu</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="form-label">Puanınız</label>
+                            <div class="rating">
+                                <input type="radio" name="rating" value="5" id="star5">
+                                <label for="star5"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" value="4" id="star4">
+                                <label for="star4"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" value="3" id="star3">
+                                <label for="star3"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" value="2" id="star2">
+                                <label for="star2"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" value="1" id="star1">
+                                <label for="star1"><i class="bi bi-star-fill"></i></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="comment" rows="6" placeholder="Deneyiminizi bizimle paylaşın..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn-submit">Değerlendirmeyi Gönder</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="previous-reviews">
+                    <h3 class="mb-4">Önceki Değerlendirmeler</h3>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="{% static 'images/avatar-1.jpg' %}" alt="Reviewer" class="reviewer-avatar">
+                            <div class="reviewer-info">
+                                <h4>Ahmet Yılmaz</h4>
+                                <div class="review-date">15.12.2023</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="review-content">
+                            <p>Harika bir konaklama deneyimi yaşadık. Personel çok ilgili ve yardımseverdi. Odalar temiz ve konforluydu. Kesinlikle tekrar geleceğiz.</p>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="{% static 'images/avatar-2.jpg' %}" alt="Reviewer" class="reviewer-avatar">
+                            <div class="reviewer-info">
+                                <h4>Ayşe Demir</h4>
+                                <div class="review-date">10.12.2023</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <div class="review-content">
+                            <p>Konumu çok merkezi ve ulaşımı kolay. Kahvaltı büfesi çok zengin ve lezzetli. Tek eksik yanı odaların biraz küçük olması.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="reservation-summary">
+                    <h3 class="summary-title">Rezervasyon Bilgileri</h3>
+                    <div class="summary-item">
+                        <span class="summary-label">Oda:</span>
+                        <span class="summary-value">Deluxe Oda</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Giriş Tarihi:</span>
+                        <span class="summary-value">01.01.2024</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Çıkış Tarihi:</span>
+                        <span class="summary-value">05.01.2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Add your form submission logic here
+        alert('Değerlendirmeniz için teşekkür ederiz!');
+        this.reset();
+    });
+
+    // Rating stars hover effect
+    const ratingLabels = document.querySelectorAll('.rating label');
+    ratingLabels.forEach(label => {
+        label.addEventListener('mouseover', function() {
+            this.style.transform = 'scale(1.2)';
+        });
+        label.addEventListener('mouseout', function() {
+            this.style.transform = 'scale(1)';
+        });
+    });
+</script>
+{% endblock %} 
